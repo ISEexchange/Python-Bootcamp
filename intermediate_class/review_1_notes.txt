@@ -1,0 +1,124 @@
+
+#################################
+# NOTES
+#################################
+
+1. Key Points about Python
+
+    a. Its an interpreted language. You do not have to compile your code.
+        If your script is called 'my.py', then run it like: 'python my.py'
+
+    b. Dynamically typed (as opposed to statically typed). You do not need
+        to provide a type when declaring a variable. You can overwrite an
+        existing variable at any time:
+            a = 1234
+            a = 'sadfg'
+            a = [1,2,3,4]
+
+    c. Python is well suited for designing your app/code in an object oriented
+        way.
+
+    d. Functions are first class objects meaning you can pass them around, save
+        them in variables, etc.
+
+    e. Python is generally quick to write and get started with. By default, it
+        is slower as computation heavy tasks that lower level languages such as C
+        but steps can be take to overcome this (such as integrating python with C).
+
+    f. Lots of use cases: command line apps/scripts, web apps, data analysis, etc
+
+    g. Python cares about indentation and the python community generally cares a
+        lot about style. Use white space to make your code easier to read. Do not
+        use excessive/unnecessary symbols (ie: parenthesis). Follow PEP8.
+
+2. Variables
+    a. x, y = x, x+y # What happens here?
+        Python fully evaluates the right hand side first
+        See http://stackoverflow.com/questions/8725673/multiple-assignment-and-evaluation-order-in-python
+
+3. Printing
+    a. Use single quotes to create strings and for printing
+    b. Ways to combine strings
+        i.   print "hi", "world" # automatically adds space per comma
+        ii.  print "hi" + "world" # no spaces added
+        iii. print "hi %s" % "world" # %s are placedholders; so are %d and %f
+        iv.  print "hi {}".format("world") # same as iii but preferred in Python 3
+
+4. Getting user input
+    a. raw_input(): whatever the user types is directly provided to your script
+    b. input(): evaluated as python code first
+
+5. Conditionals
+    a. if / elif / else example:
+        if cats_name == 'pixar':
+            print 'Its pixar'
+        elif cats_name == 'koko':
+            print 'Its koko'
+        elif cats_name == 'oreo':
+            print 'Its oreo'
+        else:
+            print 'idk whose cat this is but im keeping it'
+    b. and: everything must be true
+    c. or: at least one must be true
+    d. not: negate it
+    e. python can do: '010.001.000' > '010.000.005'
+
+6. Loops
+    a. for
+        my_list = [1,2,3,4]
+        for i in my_list:
+            print i
+        # 1
+        # 2
+        # 3
+        # 4
+    b. while
+        cntr = 0
+        while cntr < 3:
+            print cntr
+            cntr += 1
+        # 0
+        # 1
+        # 2
+
+7. Data structures
+    a. List: container to hold elemenets; elements can be of any type
+        https://docs.python.org/2/tutorial/datastructures.html#more-on-lists
+    b. Dictionary: container to hold pairs of items (key-value pairs)
+        d = {'hi': 'first', 'me': 'second'}
+        two keys here: 'hi' and 'me'
+        'hi's value is 'first'
+        d.keys() returns ['hi', 'me']
+        d.values() returns ['first', 'second']
+        keys must be immutable (of type int, string, tuple)
+        values can be anything
+        https://docs.python.org/2/tutorial/datastructures.html#dictionaries
+
+8. Built in functions
+    a. Python has an awesome standard library thats built in. Familiarize
+        yourself with them at: https://docs.python.org/2/library/functions.html
+
+
+#################################
+# ASSIGNMENT
+#################################
+
+1. Gimme a dictionary:
+	Given a list of numbers provide a dictionary where the key is the number
+	and the value is that number's occurence in the list
+
+	GIVEN:
+	the_list = [1,2,3,2,3,2,1,3,3,2,1,3,3,4,4,5,6,7,878,7,6,5,5,7,78]
+
+	PRODUCE:
+	the_dictionary = {1: 3, 2: 4, 3: 6, 4: 2, 5: 3, 6: 2, 7: 3, 878: 1, 78: 1}
+
+2. Replace with number:
+	Given a string, replace a group of identical characters with itself and
+	how many times it appeared in that particular group
+
+	GIVEN:
+    'aaabbbfccccc'
+
+    PRODUCE:
+    a3b3f1c5
