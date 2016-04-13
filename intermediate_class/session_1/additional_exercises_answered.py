@@ -16,6 +16,7 @@ for i in list_3:
 #    is exactly 4 times list_2's length. Use len().
 #        a. Use if/else
 #        b. Use assert
+print '\nQuestion 5:'
 if len(list_1) == len(list_3):
     print 'list_1 == list_3'
 else:
@@ -34,6 +35,7 @@ assert len(list_3) == len(list_2)*4
 #    appears 4 times
 #        a. Use one if with 3 clauses connected by and
 #        b. Use one assert with 3 clauses connected by and
+print '\nQuestion 6:'
 if list_3.count('a') == 4 and list_3.count('b') == 4 and list_3.count('c') == 4:
     print "list_3 has 4 a's, 4 b's and 4 c's"
 else:
@@ -47,6 +49,7 @@ assert list_3.count('a') == 4 and list_3.count('b') == 4 and list_3.count('c') =
 #        List 3 Item # 1: <>
 #        List 3 Item # 2: <>
 #        List 3 Item # 3: <>
+print '\nQuestion 7:'
 for i, element in enumerate(list_3, 1):
     print 'List 3 Item # %s: %s' % (i, element)
 
@@ -84,6 +87,7 @@ assert dict_1 == dict_2
 #         Dictionary 1 Pair # 0: Key = <>, Value = <>
 #         Dictionary 1 Pair # 1: Key = <>, Value = <>
 #         Dictionary 1 Pair # 2: Key = <>, Value = <>
+print '\nQuestion 15:'
 for i, (k, v) in enumerate(dict_1.iteritems()):
     print 'Dictionary 1 Pair %s: Key = %s, Value = %s' % (i, k, v)
 
@@ -102,11 +106,9 @@ a, b, c = [1, 2, 3]
 #         some_string = "the big brown fox jumped over the canyon?!"
 some_string = "the big brown fox jumped over the... canyon?!"
 words = some_string.split()
-print words
 
 # 18. Modify the list so that the first letter in the first word is uppercase.
 words[0] = words[0].capitalize()
-print words
 
 # 19. Modify the list so that the last word is all uppercase.
 words[-1] = words[-1].upper()
@@ -115,5 +117,45 @@ words[-1] = words[-1].upper()
 #     characters. If a word contains any punctuation character remove it and save
 #     the result in a new list called clean_words.
 import string
-for w in words:
-    pass
+# Answer 1: Loop through characters in words via nested loop. Check if each
+# word character is a punctuation character. Create new word char by char.
+clean_words = []
+# Loop through the words
+for word in words:
+    new_word = ''
+    # Loop through the characters in the word
+    for word_char in word:
+        # Check if word character is in punctuation list
+        if word_char not in string.punctuation:
+            new_word += word_char
+    clean_words.append(new_word)
+
+print '\nQuestion 20 Answer 1:'
+print some_string
+print words
+print clean_words
+
+# Answer 2: Operate on a string not the list
+word_string = ' '.join(words)
+clean_word_string = ''
+clean_words = []
+for word_char in word_string:
+    if word_char not in string.punctuation:
+        clean_word_string += word_char
+clean_words = clean_word_string.split()
+
+print '\nQuestion 20 Answer 2:'
+print word_string
+print clean_word_string
+print clean_words
+
+# Answer 3: Use the string translate method
+word_string = ' '.join(words)
+clean_words = []
+clean_word_string = word_string.translate(None, string.punctuation)
+clean_words = clean_word_string.split()
+
+print '\nQuestion 20 Answer 3:'
+print word_string
+print clean_word_string
+print clean_words
