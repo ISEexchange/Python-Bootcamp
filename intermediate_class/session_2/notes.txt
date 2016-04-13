@@ -1,0 +1,70 @@
+#################################
+# Notes
+#################################
+
+1. Functions: encapsulate blocks of code for readability and reuseability
+    a. any number of parameters and return values
+    b. required/positional, keyword, default, variable length
+    c. be careful with mutable default parameters - parameters are initialized
+        only once per program
+    d. by reference, by value
+    e. *args and **kwargs
+    f. global vs local scope
+    g. nested functions
+    h. passing functions
+
+2. Classes: blueprints for objects; for readability and reuseability
+    a. class vs object
+    b. constructor
+    c. data member and function
+    d. self
+    e. class variable, instance variable
+    f. inheritance
+    g. no public vs private
+
+
+def f():
+    print 'f'
+
+    def g():
+        print 'g'
+
+        def h():
+            print 'h'
+
+        h()
+    g()
+    # h()
+# f()
+# g()
+
+
+def a(b):
+    b()
+
+a(f)
+
+
+class C(object):
+    d = 77
+
+c1 = C()
+c2 = C()
+c1.d = 66
+print c1.d, c2.d, C.d
+print c1.__dict__, c2.__dict__
+
+
+
+
+def extendList(val, list=[]):
+    list.append(val)
+    return list
+
+list1 = extendList(10)
+list2 = extendList(123,[])
+list3 = extendList('a')
+
+print "list1 = %s" % list1
+print "list2 = %s" % list2
+print "list3 = %s" % list3
