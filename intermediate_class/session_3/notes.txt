@@ -1,0 +1,128 @@
+#################################
+# Notes
+#################################
+
+1. **kwargs - allows a function to have any number of named parameters
+
+2. To clearly see what self is you can print it
+
+       class C(object):
+
+           def __init__(self, a):
+               print self, a
+
+       c1 = C(1)  # will print: <__main__.C object at 0x7f102b5c4290> 1
+
+       Notice how it says that self is an object?
+
+3. class method decorator: a class' method which can be called on the class itself
+   and an instance of that class (an object) is not required. Use the decorator
+   syntax (@) to convert a method into a class method. The first arugment of the
+   function will be the class itself.
+
+       class C(object):
+
+           def __init__(self, a):
+               print self, a
+
+           @classmethod
+           def func1(cls, a):
+               print cls, a
+
+       C.func1(1)  # will print: <class '__main__.C'> 1
+
+       Notice how it says that cls is of type class?
+       Class methods can be used to operate on the class itself, for example
+       to modify class variables (setter/getter for class variable). Another
+       use is an alternative constructor:
+
+       class C(object):
+
+           def __init__(self, a):
+               print self, a
+               self.a = a
+
+           @classmethod
+           def constructor2(cls, a):
+               print cls, a
+               temp = cls(a)
+               temp.b = a*a
+               return temp
+
+           c1 = C.constructor2(9)
+           # <class '__main__.C'> 9
+           # <__main__.C object at 0x7f102b5c4610> 9
+           print c1.__dict__
+           # {'a': 9, 'b': 81}
+
+4. static method decorator: a class' method which can be called on the class itself
+   and an instance of that class (an object) is not required. Use the decorator
+   syntax (@) to convert a method into a static method. Python will not pass in
+   anything as an argument to this function (no self or cls). This function is
+   just a standalone function that has nothing to with the class but can be defined
+   inside of the class for organizational purposes.
+
+       class C(object):
+
+           def __init__(self, a):
+               print self, a
+               self.a = a
+
+           @staticmethod
+           def func1(a):
+               b = a*a
+               print b
+               return b
+
+           a_times_a = C.func1(9)
+           # 81
+           print C.__dict__
+           # dict_proxy({'__module__': '__main__', 'func1': <staticmethod object at 0x7f102b5c52f0>,
+           # '__dict__': <attribute '__dict__' of 'C' objects>, '__weakref__': <attribute '__weakref__' of 'C' objects>,
+           # '__doc__': None, '__init__': <function __init__ at 0x7f102b5bd8c0>})
+
+5. list comprehension: concise way to create a list
+   https://docs.python.org/2/tutorial/datastructures.html#list-comprehensions
+
+   Instead of:
+       squares = []
+       for x in range(10):
+           squares.append(x**2)
+
+   use a list comprehension:
+        squares = [x**2 for x in range(10)]
+
+6. dictionary comprehension: concise way to create a dictionary (Only for python 2.7+)
+   https://docs.python.org/2/tutorial/datastructures.html#dictionaries
+
+       a = {a:a*2 for a in [1,2,3]}
+       print a
+       # {1: 2, 2: 4, 3: 6}
+
+7. set comprehension: concise way to create a set (Only for python 2.7+)
+   https://docs.python.org/2/tutorial/datastructures.html#sets
+
+       a = {a for a in [1,2,3]}
+       print a
+       # set([1, 2, 3])
+
+       a = {a for a in [1,2,3,1,2,3]}
+       print a
+       # set([1, 2, 3])
+
+8. More complex comprehensions:
+
+       # Only square the number if its even
+       L = [x**2 for x in range(10) if x % 2 == 0]
+       print L
+       # [0, 4, 16, 36, 64]
+
+       # Square it if its even, double it if its odd
+       L = [x**2 if x % 2 == 0 else x*2 for x in range(10)]
+       print L
+       # [0, 2, 4, 6, 16, 10, 36, 14, 64, 18]
+
+       # Save number as key; Get random value between number and number^number
+       D = {i:random.randint(i, i**i) for i in range(10)}
+       print D
+       # {0: 1, 1: 1, 2: 4, 3: 8, 4: 26, 5: 1075, 6: 24580, 7: 188354, 8: 10526463, 9: 367346918}
