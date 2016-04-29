@@ -1,0 +1,60 @@
+#################################
+# Notes
+#################################
+
+1. Generators
+
+    a. range vs xrange
+        i.   range creates the entire list in memory which you can then iterate
+             over. The actual iteration process is faster (compared to xrange)
+             because all of the elements have been created and they can just be
+             looped over. Storing all of the contents in memory may not be a
+             good idea or may not be possible, however.
+        ii.  xrange acts like a generator in that it does not create the entire
+             iterable in memory. The elements are dynamically created upon request.
+        iii. In python3, range() actually behaves like python2's xrange. You'll
+             have to explicitly make a list if you need one.
+
+    b. generator expression
+        i.   A generator expression/comprehension is a compact generator notation
+             in parentheses. Its syntax is identical to that of a list comprehension
+             except that instead of [] you use ().
+
+                 >>> a = (i for i in range(5))
+                 >>> a
+                 <generator object <genexpr> at 0x7f4e79a70500>
+                 >>> a.next()
+                 0
+                 >>> a.next()
+                 1
+                 >>> a.next()
+                 2
+                 >>> a.next()
+                 3
+                 >>> a.next()
+                 4
+                 >>> a.next()
+                 Traceback (most recent call last):
+                   File "<stdin>", line 1, in <module>
+                 StopIteration
+
+
+    c. function generator
+        https://wiki.python.org/moin/Generators
+        i.   "Generators functions allow you to declare a function that behaves
+             like an iterator, i.e. it can be used in a for loop."
+
+                 def firstn(n):
+                     num = 0
+                     while num < n:
+                         yield num
+                         num += 1
+                 sum_of_first_n = sum(firstn(1000000))
+
+
+2. Threading
+
+    a. Run multiple instances of a method at the same time
+    b. threads let you share data amoung them
+    c. threads are lightweight; they don't require much overhead
+    d. GIL: Global Interpreter Lock
