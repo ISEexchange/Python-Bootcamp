@@ -14,18 +14,3 @@
 #
 # 3. In main, instantiate a PacketGenerator. Generate packets in a while loop.
 #    Print the contents of the packet
-
-
-
-
-
-
-# bret
-# rob
-# shray
-# girish
-# andrew
-# jason
-# priyanka
-# sef
-# han

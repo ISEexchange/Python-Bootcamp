@@ -58,3 +58,26 @@
     b. threads let you share data amoung them
     c. threads are lightweight; they don't require much overhead
     d. GIL: Global Interpreter Lock
+
+           import threading
+           import time
+
+           # Define a function for the thread
+           def print_time(threadName, delay):
+               count = 0
+               while count < 2:
+                   time.sleep(delay)
+                   count += 1
+                   print "%s: %s" % (threadName, time.ctime(time.time()))
+
+           new_thread_1 = threading.Thread(target=print_time, args=("Thread-1", 2))
+           new_thread_2 = threading.Thread(target=print_time, args=("Thread-2", 4))
+
+           new_thread_1.start()
+           new_thread_2.start()
+
+           # Wait for all of the threads to complete
+           while threading.active_count() > 1:
+               pass
+
+           print 'All done'
