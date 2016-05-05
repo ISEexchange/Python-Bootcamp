@@ -1,0 +1,59 @@
+#################################
+# Notes
+#################################
+
+1. timeit: module which makes testing the runtime of your code easy
+
+    # this is the function we want to test
+    def test():
+        L = []
+        for i in range(100):
+            L.append(i)
+
+    import timeit
+    # lets give timeit.timeit() three arguments
+    # the first is the code to be executed (a function call in this example)
+    # setup is for anything that is needed in order to execute the test code
+    # number is for how many times to execute the test code
+    print timeit.timeit("test()", setup="from __main__ import test", number=100000)
+    # 0.969326019287
+
+2. Sockets
+
+    a. A socket is an endpoint of a bidirectional communication channel.
+    b. Various channel types: UDP, TCP, Linux socket
+    c. Low level access to network resources. Access to the basic socket
+       support of the underlying operating system.
+    d. Socket can be used to create a client or a server or both
+
+    # simple example of creating a socket to send data to some other socket
+
+    # Create a socket object
+    my_skt = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    # This is the host/ip and port that the server is listening on. We want
+    # to connect to this port so that we can send it a message
+    host = '0.0.0.0'
+    port = 42449
+    my_skt.connect((host, port))
+    my_skt.send("some data")
+
+    # see socket_example.py for a more elaborate demo of a server and client
+
+3. SocketServer: Module which simplifies the task of writing network servers
+
+    import SocketServer
+    skt_server = SocketServer.TCPServer(('', 42449), ClientHandlerClass)
+    skt_server.serve_forever()
+
+4. URL Lib: urllib2 - functions and classes which help in opening URLs (mostly HTTP)
+
+    import urllib2
+    response = urllib2.urlopen('http://google.com')
+
+    # print full html contents of page
+    html = response.read()
+    print html
+
+    # or instead loop through contents, line by line
+    for line in response:
+        print line
