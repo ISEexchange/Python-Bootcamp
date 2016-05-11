@@ -16,5 +16,5 @@
 #    indicating so.
 # 8. Add prints in the server and client to show whats happening.
 
-# See PacketTester.py and call it by:
+# See PacketTester.py in the NetworkPackets directory and call it by:
 #     python PacketTester.py
