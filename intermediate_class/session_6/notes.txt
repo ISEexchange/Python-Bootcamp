@@ -1,0 +1,61 @@
+#################################
+# Notes
+#################################
+
+1. decorators: wrappers for existing functions/classes. They allow you to
+   modify the behavior of a function.
+
+    a. a decorator is a function itself which takes a function as input
+    b. it creates a function inside of it and then returns that function
+    c. inside the inner function, it calls the input function
+
+        # Credit: http://thecodeship.com/patterns/guide-to-python-function-decorators/
+
+        # this is the original function to be decorated
+        #
+        def get_text(name):
+            return "lorem ipsum, {0} dolor sit amet".format(name)
+
+        def p_decorate(func):
+            def func_wrapper(name):
+                return "<p>{0}</p>".format(func(name))
+            return func_wrapper
+
+        my_get_text = p_decorate(get_text)
+        print my_get_text("Carlos")
+        # <p>lorem ipsum, Carlos dolor sit amet</p>
+
+    d. decorator syntax:
+
+        def p_decorate(func):
+            def func_wrapper(name):
+                return "<p>{0}</p>".format(func(name))
+            return func_wrapper
+
+        @p_decorate
+        def get_text(name):
+            return "lorem ipsum, {0} dolor sit amet".format(name)
+
+        print get_text("Carlos")
+
+        # Outputs <p>lorem ipsum, Carlos dolor sit amet</p>
+
+        # From in class:
+        # this is the decorator
+        def decorator(some_func):
+            # you need to create a new function and then return it
+            def decorated_func(*args, **kwargs):
+                # this function will call the input func (some_func)
+                # and will perform some additional behavior before or after
+                some_value = some_func(*args, **kwargs)
+                return '<h1>%s</h1>' % some_value
+            return decorated_func
+
+        # this is the function we want to decorate/modify
+        @decorator
+        def my_func(name):
+            return 'hello %s' % name
+        # my_func = decorator(my_func)
+
+        print my_func('carlos')
+        # <h1>hello carlos</h1>
